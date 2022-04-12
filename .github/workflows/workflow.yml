@@ -1,4 +1,4 @@
-name: NASA Project CI
+name: Page CI
 on:
   push:
     branches: [ master ]
