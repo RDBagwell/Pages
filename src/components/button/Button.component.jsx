@@ -7,7 +7,7 @@ const BUTTION_TYPE_CLASS = {
 
 const Button = ({children, buttonType, ...otherProps})=>{
     return (
-        <button className={`button-container ${BUTTION_TYPE_CLASS[buttonType]}`} {...otherProps} >{children}</button>
+        <button className={`button-container ${BUTTION_TYPE_CLASS[buttonType] ? BUTTION_TYPE_CLASS[buttonType] : '' }`} {...otherProps} >{children}</button>
     );
 }
 
