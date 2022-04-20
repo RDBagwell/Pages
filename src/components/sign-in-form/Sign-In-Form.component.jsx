@@ -13,6 +13,7 @@ const SigninForm = ()=>{
     const [formFields, setFormFields] = useState(defaultState);
     const {email, password} = formFields;
 
+ 
     const resetFormFields = ()=>{
         setFormFields(defaultState)
     }
@@ -26,8 +27,8 @@ const SigninForm = ()=>{
     const handleSubmit = async (event)=>{
         event.preventDefault();
         try {
-            const response = await signInAuthUsingEmailAndPassword(email, password);
-            console.log(response);
+            // const user = await signInAuthUsingEmailAndPassword(email, password);
+            await signInAuthUsingEmailAndPassword(email, password);
             resetFormFields()
         } catch (error) {
             if(error.code === "auth/wrong-password" || error.code === "auth/user-not-found"){
@@ -64,7 +65,7 @@ const SigninForm = ()=>{
                 />
                 <div className='buttons-container'>
                     <Button  type='submit'  children="Sign In" />
-                    <Button type='button' buttonType='google' onClick={logGoogleUser} children="Sign In Whith Google" />
+                    <Button type='button' buttonType='google' onClick={logGoogleUser} children="Google Sign in" />
                 </div>
             </form>
         </div>
