@@ -1,5 +1,5 @@
 import { useState } from 'react'; 
-import { createUserDocumentFromAuth, signInWithGooglePopup, signInAuthUsingEmailAndPassword } from '../../utils/firebase/firebasr.utils';
+import { signInWithGooglePopup, signInAuthUsingEmailAndPassword } from '../../utils/firebase/firebasr.utils';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/Button.component';
 import './sign-in-form.styles.scss';
@@ -19,8 +19,7 @@ const SigninForm = ()=>{
     }
 
     const logGoogleUser = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
       };
     
 
