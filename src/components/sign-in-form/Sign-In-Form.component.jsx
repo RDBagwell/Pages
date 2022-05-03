@@ -1,7 +1,7 @@
 import { useState } from 'react'; 
 import { signInWithGooglePopup, signInAuthUsingEmailAndPassword } from '../../utils/firebase/firebasr.utils';
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/Button.component';
+import Button, {BUTTION_TYPE_CLASS} from '../button/Button.component';
 import './sign-in-form.styles.scss';
 
 const defaultState = {
@@ -64,7 +64,7 @@ const SigninForm = ()=>{
                 />
                 <div className='buttons-container'>
                     <Button  type='submit'  children="Sign In" />
-                    <Button type='button' buttonType='google' onClick={logGoogleUser} children="Google Sign in" />
+                    <Button type='button' buttonType={BUTTION_TYPE_CLASS.google} onClick={logGoogleUser} children="Google Sign-in" />
                 </div>
             </form>
         </div>
