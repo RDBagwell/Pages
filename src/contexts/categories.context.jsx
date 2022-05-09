@@ -1,5 +1,4 @@
-import { createContext, useState, useEffect } from "react";
-// import SHOP_DATA from '../shop-data.js';
+import { createContext, useEffect, useReducer } from "react";
 
 import {getCategiriesAndDocument} from '../utils/firebase/firebasr.utils'
 
@@ -8,8 +7,33 @@ export const CategoriesContext = createContext({
     setCategoriesMap: ()=> null
 });
 
+export const CATEGORIES_ACTION_TYPE = {
+    SET_CATEGORIES_MAP: 'SET_CATEGORIES_MAP'
+}
+
+const categoriesReducer = (state, action)=>{
+    const {type, payload} = action;
+    switch (type) {
+        case CATEGORIES_ACTION_TYPE.SET_CATEGORIES_MAP:
+            return{
+                ...state,
+                categoriesMap: payload
+            }
+    
+        default:
+            throw new Error(`Unhandled type ${type} in categoriesReducer`);
+    }
+}
+
+const INITTAL_STATE = {
+    categoriesMap: {}
+}
+
 export const CategoriesProvider = ({children})=>{
-    const [categoriesMap, setCategoriesMap] = useState({});
+    const [{categoriesMap}, dispatch] = useReducer(categoriesReducer, INITTAL_STATE);
+    const setCategoriesMap = (categoryMap)=>{
+        dispatch({type: CATEGORIES_ACTION_TYPE.SET_CATEGORIES_MAP, payload: categoryMap})
+    }
 
     useEffect(()=>{
         const getCategoriesMap = async ()=>{
